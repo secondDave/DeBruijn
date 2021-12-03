@@ -1,4 +1,4 @@
-package DeBruij
+package DeBruijin
 
 import (
 	"fmt"
@@ -25,7 +25,7 @@ type DeBruijn struct {
 	lock  sync.RWMutex
 }
 
-func NewGraph() DeBruijn {
+func NewBruijnGraph() DeBruijn {
 	return DeBruijn{
 		nodes: make([]*Node, 0),
 		edges: make(map[Node][]*Node),
@@ -46,7 +46,7 @@ func (d *DeBruijn) AddEdge(node1, node2 *Node) {
 	d.lock.Unlock()
 }
 
-func (d *DeBruijn) String() {
+func (d *DeBruijn) String() string {
 	d.lock.RLock()
 	s := ""
 	for i := 0; i < len(d.nodes); i++ {
@@ -57,6 +57,6 @@ func (d *DeBruijn) String() {
 		}
 		s += "\n"
 	}
-	fmt.Println(s)
 	d.lock.RUnlock()
+	return s
 }
