@@ -43,8 +43,8 @@ func TestAddition(t *testing.T) {
 		if len(edges) != 0 {
 			t.Fail()
 		}
-		testValueA := "A"
-		testValueB := "B"
+		testValueA := "AB"
+		testValueB := "BC"
 		node := NewNode(testValueA)
 		if testValueA != node.value {
 			t.Fail()
@@ -62,8 +62,9 @@ func TestAddition(t *testing.T) {
 			t.Errorf("Graph node %s not contained", node1.value)
 		}
 		graph.AddEdge(&node, &node1)
-		testString := "A -> B \nB -> A \n"
+		testString := "AB -> BC \nBC -> AB \n"
 		if graph.String() != testString {
+			// Print out runes to evaluate invisible strings
 			t.Logf("String is %s not %s, runes = %d, %d", graph.String(), testString, []rune(graph.String()), []rune(testString))
 			t.Fail()
 		}
